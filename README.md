@@ -3,6 +3,10 @@
 > **把比赛意图，转化为可解释、可验证、可继续编辑的战术决策。**  
 > *A decision workspace for basketball coaches — not another arrow-drawing tool.*
 
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-打开在线体验-ff6b35?style=for-the-badge&logo=vercel&logoColor=white)](https://lele-ai-basketball-tactics.vercel.app)
+
+**在线体验：** [lele-ai-basketball-tactics.vercel.app](https://lele-ai-basketball-tactics.vercel.app)
+
 LELE TACTICS 不是“画箭头工具”，而是一套面向篮球教练的**可解释战术决策工作台**：将战术画板、球队画像、阵容能力、对手防守与规则校验放进同一条工作流，让每个建议都能回答——**为什么这样打、谁来执行、风险在哪里、失效后怎么退。**
 
 ![LELE TACTICS 主战术板](docs/screenshots/hero-tactics-board.png)
@@ -40,6 +44,12 @@ LELE TACTICS 不是“画箭头工具”，而是一套面向篮球教练的**�
       <br /><strong>TEAM INTELLIGENCE · 球队智能</strong><br />管理球队、球员、位置、角色与六维能力；阵容画像真实进入战术匹配，而非只做展示。
     </td>
   </tr>
+  <tr>
+    <td colspan="2" valign="top">
+      <img src="docs/screenshots/playbook.png" alt="战术库与战术复用" />
+      <br /><strong>PLAYBOOK · 战术库</strong><br />保存、复用并继续编辑三阶段战术，让一次临场判断沉淀为可重复调用的球队资产。
+    </td>
+  </tr>
 </table>
 
 ## 核心能力
@@ -69,9 +79,9 @@ flowchart LR
 | 层级 | 技术 |
 | --- | --- |
 | UI | React 19、TypeScript 5.9、原生 Canvas |
-| 应用框架 | vinext 1.0 beta、Vite 8 |
+| 应用框架 | Next.js 16（App Router） |
 | 样式 | Tailwind CSS 4 工具链 + 项目样式 |
-| 构建与运行 | Node.js ≥ 22.13、npm、Wrangler / Cloudflare Vite Plugin |
+| 构建与运行 | Node.js ≥ 22.13、npm、Vercel |
 | 测试 | Node.js 内置 test runner、构建后 HTML 渲染测试 |
 | 数据层预留 | Drizzle ORM / Drizzle Kit；核心战术流程当前未接入持久化 |
 

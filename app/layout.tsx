@@ -1,41 +1,37 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const configuredSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.VERCEL_URL;
+const siteUrl = configuredSiteUrl
+  ? configuredSiteUrl.startsWith("http")
+    ? configuredSiteUrl
+    : `https://${configuredSiteUrl}`
+  : "http://localhost:3000";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const title = "乐乐 AI 篮球战术板";
+const description = "乐乐的本地篮球战术板：默认摆放 A 队五人，按需拖入 B 队与篮球，绘制并连续播放战术。";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") || requestHeaders.get("host") || "localhost:4317";
-  const protocol = requestHeaders.get("x-forwarded-proto") || (host.startsWith("localhost") ? "http" : "https");
-  const origin = `${protocol}://${host}`;
-  const imageUrl = `${origin}/og.png`;
-  const title = "乐乐 AI 篮球战术板";
-  const description = "乐乐的本地篮球战术板：默认摆放 A 队五人，按需拖入 B 队与篮球，绘制并连续播放战术。";
-
-  return {
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
     title,
     description,
-    metadataBase: new URL(origin),
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      url: origin,
-      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "乐乐 AI 篮球战术板" }],
-    },
-    twitter: { card: "summary_large_image", title, description, images: [imageUrl] },
-  };
-}
+    type: "website",
+    url: "/",
+    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "乐乐 AI 篮球战术板" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og.png"],
+  },
+};
 
 export default function RootLayout({
   children,
@@ -44,11 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
