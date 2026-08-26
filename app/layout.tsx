@@ -19,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol = requestHeaders.get("x-forwarded-proto") || (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
   const imageUrl = `${origin}/og.png`;
-  const title = "SETPLAY AI — 篮球教练智能工作台";
-  const description = "管理球队与球员画像，模拟对手，并用自然语言生成适配阵容的篮球战术与训练口令。";
+  const title = "乐乐 AI 篮球战术板";
+  const description = "乐乐的本地篮球战术板：默认摆放 A 队五人，按需拖入 B 队与篮球，绘制并连续播放战术。";
 
   return {
     title,
@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       type: "website",
       url: origin,
-      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "SETPLAY AI 篮球教练智能工作台" }],
+      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "乐乐 AI 篮球战术板" }],
     },
     twitter: { card: "summary_large_image", title, description, images: [imageUrl] },
   };
